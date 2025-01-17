@@ -1,0 +1,42 @@
+<div class="card contact-form mt-5" *ngIf="currentUser; else noUser">
+  <div class="card-header">
+    <h2 class="text-center">Contact Us</h2>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          [(ngModel)]="email" 
+          name="email" 
+          class="form-control" 
+          placeholder="name@example.com"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="suggestion">Suggestion:</label>
+        <textarea 
+          id="suggestion" 
+          [(ngModel)]="suggestion" 
+          name="suggestion" 
+          class="form-control" 
+          required></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #noUser>
+  <div class="centered-content">
+    <p>Please sign in to submit your feedback.</p>
+    <a routerLink="/login">Sign In</a>
+  </div>
+</ng-template>
+

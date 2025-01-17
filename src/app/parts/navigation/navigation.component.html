@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="root">
+        <img src="/assets/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        E-Shop
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <div class="navbar-nav">
+
+            <a class="nav-item nav-link " routerLink="/category/0">
+                Books
+            </a>
+            <a class="nav-item nav-link" routerLink="/category/1">
+                Electronics
+            </a>
+            <a class="nav-item nav-link " routerLink="/category/2">
+                Computers
+            </a>
+            <a class="nav-item nav-link" routerLink="/category/3">
+                Phones
+            </a>
+
+        </div>
+
+        <div class="navbar-nav ml-auto">
+            <a *ngIf="currentUser" class="nav-item nav-link " routerLink="/cart">
+                <i class="fas fa-shopping-cart"></i>
+                Cart
+            </a>
+
+            <ng-container *ngIf="currentUser; else noUser">
+                <a class="nav-item nav-link " routerLink="/order">
+                    <i class="fas fa-list-ul"></i>
+                    Orders
+                </a>
+                <a class="nav-item nav-link " routerLink="/profile">
+                    {{currentUser.name}}
+                </a>
+                <a class="nav-item nav-link " (click)="logout()" routerLink="/login" [queryParams]="{logout: true}">
+                    Sign Out
+                </a>
+                <a class="nav-item nav-link " routerLink="/contact">
+                    Contact Us
+                </a>
+
+            </ng-container>
+            <ng-template #noUser>
+                <a class="nav-item nav-link " routerLink="/login">
+                    Sign In
+                </a>
+                <a class="nav-item nav-link " routerLink="/register">
+                    Sign Up
+                </a>
+            </ng-template>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- Chat Modülü -->
+<div id="chat-box" *ngIf="isChatVisible" class="chat-box">
+    <div class="chat-header">
+        <i class="fa-regular fa-comments"></i>
+        <span (click)="toggleChat()">Customer Support</span>
+    </div>
+    <div class="chat-body">
+        <p>Size nasıl yardımcı olabilirim?</p>
+        <div *ngFor="let message of messages" class="message-bubble"
+            [ngClass]="{'user-message': message.sender === 'user', 'support-message': message.sender === 'support'}">
+            <p>{{ message.text }}</p>
+        </div>
+    </div>
+    <div class="chat-footer">
+        <input [(ngModel)]="newMessage" type="text" placeholder="Type your message...">
+        <button (click)="sendMessage()"><i class="fa-regular fa-paper-plane"></i></button>
+    </div>
+</div>
+
+
+<div *ngIf="!isChatVisible" class="support-button">
+    <button (click)="toggleChat()">Support</button>
+</div>

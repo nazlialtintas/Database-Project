@@ -1,0 +1,236 @@
+<div class="container mt-4">
+  <h1 class="text-center mb-4">{{productInfo?.name}}</h1>
+
+  <!-- Ürün Resmi -->
+  <div class="text-center mb-4">
+    <img 
+      [src]="selectedImage || productInfo?.avatarUrl" 
+      class="img-thumbnail" 
+      alt="{{productInfo?.name}}" 
+      style="max-height: 400px;"
+    >
+  </div>
+
+  <div *ngIf="productInfo?.productImages?.length > 0" class="mt-4">
+    <h4>Additional Images</h4>
+    <div class="d-flex flex-wrap">
+      <img 
+        *ngFor="let image of productInfo.productImages" 
+        [src]="image" 
+        alt="{{productInfo?.name}}" 
+        class="img-thumbnail m-1" 
+        style="max-height: 100px; cursor: pointer;"
+        (click)=changeMainImage(image)
+      >
+    </div>
+  </div>
+  <!-- İki Kolon -->
+  <div class="row">
+    <!-- İlk Kolon -->
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li *ngIf="productInfo?.productDetailEntity?.description" class="list-group-item">
+          <strong>Description:</strong> {{productInfo.productDetailEntity.description}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.brand" class="list-group-item">
+          <strong>Brand:</strong> {{productInfo.productDetailEntity.brand}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.model" class="list-group-item">
+          <strong>Model:</strong> {{productInfo.productDetailEntity.model}}
+        </li>
+        <li *ngIf="productInfo?.categoryEntity?.name" class="list-group-item">
+          <strong>Category:</strong> {{productInfo.categoryEntity.name}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.color" class="list-group-item">
+          <strong>Color:</strong> {{productInfo.productDetailEntity.color}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.material" class="list-group-item">
+          <strong>Material:</strong> {{productInfo.productDetailEntity.material}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.originCountry" class="list-group-item">
+          <strong>OriginCountry:</strong> {{productInfo.productDetailEntity.originCountry}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.warrantyPeriodMonths" class="list-group-item">
+          <strong>WarrantyPeriodMonths:</strong> {{productInfo.productDetailEntity.warrantyPeriodMonths}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.energyClass" class="list-group-item">
+          <strong>EnergyClass:</strong> {{productInfo.productDetailEntity.energyClass}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.dimensions" class="list-group-item">
+          <strong>Dimensions:</strong> {{productInfo.productDetailEntity.dimensions}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.weight" class="list-group-item">
+          <strong>Weight:</strong> {{productInfo.productDetailEntity.weight}}
+        </li>
+      </ul>
+    </div>
+
+    <!-- İkinci Kolon -->
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li *ngIf="productInfo?.price" class="list-group-item">
+          <strong>Price:</strong> {{productInfo.price | currency}}
+        </li>
+        <li *ngIf="productInfo?.discountPrice < productInfo?.price" class="list-group-item">
+          <strong>Discount Price:</strong> {{productInfo.discountPrice | currency}}
+        </li>
+        <li *ngIf="productInfo?.popularity" class="list-group-item">
+          <strong>Popularity:</strong> {{productInfo.popularity}}
+        </li>
+        <li *ngIf="productInfo?.stock" class="list-group-item">
+          <strong>Stock:</strong> {{productInfo.stock}}
+        </li>
+        <li *ngIf="productInfo?.description" class="list-group-item">
+          <strong>General Description:</strong> {{productInfo.description}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.processor" class="list-group-item">
+          <strong>Processor:</strong> {{productInfo.productDetailEntity.processor}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.ram" class="list-group-item">
+          <strong>Ram:</strong> {{productInfo.productDetailEntity.ram}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.storage" class="list-group-item">
+          <strong>Storage:</strong> {{productInfo.productDetailEntity.storage}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.screenSize" class="list-group-item">
+          <strong>ScreenSize:</strong> {{productInfo.productDetailEntity.screenSize}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.resolution" class="list-group-item">
+          <strong>Resolution:</strong> {{productInfo.productDetailEntity.resolution}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.operatingSystem" class="list-group-item">
+          <strong>OperatingSystem:</strong> {{productInfo.productDetailEntity.operatingSystem}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.batteryCapacity" class="list-group-item">
+          <strong>BatteryCapacity:</strong> {{productInfo.productDetailEntity.batteryCapacity}}
+        </li>
+        <li *ngIf="productInfo?.productDetailEntity?.connectivity" class="list-group-item">
+          <strong>Connectivity:</strong> {{productInfo.productDetailEntity.connectivity}}
+        </li>
+
+        <li></li>
+       
+      </ul>
+
+      <form name="form" #form='ngForm' (ngSubmit)="addToCart()">
+        <div class="text-left">
+          <input hidden name="productId" [value]=productInfo?.id>
+          <label class="card-text">
+            <strong>Quantity: </strong>
+            <input [(ngModel)]=count
+                   (change)="validateCount()"
+                   type="number"
+                   name="count"
+                   required
+                   min="1"
+                   [max]=productInfo?.stock
+            >
+          </label>
+    
+    
+          <p class="card-text"><strong>Subtotal: </strong>
+            <label id="subtotal">{{count * productInfo?.discountPrice | currency}}</label>
+          </p>
+        </div>
+        <button type="submit" [disabled]="!form.form.valid"
+                class="btn btn-primary btn-lg"
+        >Add to Cart
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+
+  
+<div class="container p-3">
+  <h2 class="app-title" id="header">All Reviews</h2>
+  <div class="card" >
+    <div class="card-header">
+      Add New Review
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addComment()" id="addCommentForm">
+        <div class="card-text mb-1">
+          <textarea [(ngModel)]="newCommentText" name="newComment" class="textarea-card"
+            style="height: auto;"></textarea>
+          <!-- Yıldızlı puanlama bölümü -->
+          <div class="form-group mt-3">
+            <div class="star-rating ">
+              <button *ngFor="let star of stars; let i = index" (click)="rateProduct(i + 1)"
+                (mouseover)="onHover(i + 1)" (mouseleave)="onLeave()" class="star-btn"
+                [ngClass]="{ filled: i < currentHover || i < currentRating }">
+                <i class="fa-regular fa-star"></i>
+              </button>
+            </div>
+
+            <button class="btn" type="submit" id="btnAddNewComment">
+              SEND
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <p class="float-left" style="font-size: 30px;">Filter By Score</p>
+      <div class="star-rating d-flex float-right">
+        <!-- Mevcut filtreleme yıldızları -->
+        <div *ngFor="let rating of [5, 4, 3, 2, 1]" class="star mt-1 ml-3" (click)="filterByRating(rating)">
+          <button class="btn btn-secondary" type="button">
+            <i *ngFor="let _ of [].constructor(rating)" class="fa-solid fa-star"></i>
+            <i *ngFor="let _ of [].constructor(5 - rating)" class="fa-regular fa-star"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-items">
+      <ul class="list-group">
+        <div *ngFor="let comment of userComments">
+          <li class="list-group-item comment">
+            <p><strong>{{ comment.fromUser }}</strong>: {{ comment.comment }}</p>
+            <!-- Yıldız sayısını göstermek için -->
+             <div class="star-rating" id="starInComment">
+              <button *ngFor="let star of [].constructor(comment.productRate); let i = index" class="star-btn filled">
+                <i class="fa-solid fa-star"></i> <!-- Dolu yıldızlar -->
+              </button>
+              <button *ngFor="let star of [].constructor(5 - comment.productRate); let i = index" class="star-btn">
+                <i class="fa-regular fa-star"></i> <!-- Boş yıldızlar -->
+              </button>
+             </div>
+            
+             <span class="likeInfo">
+              <button (click)="increaseLike(comment)" class="btn btn-success btn-sm">
+                <i class="fa-regular fa-thumbs-up"></i> Likes: {{ comment.loveCount }}
+              </button>
+              <!-- Beğenilmeme butonu -->
+              <button (click)="increaseUnlike(comment)" class="btn btn-danger btn-sm ml-2">
+                <i class="fa-regular fa-thumbs-down"></i> Dislikes: {{ comment.hateCount }}
+              </button>
+            </span>
+          </li>
+          <li *ngIf="comment.commentResponseEntity">
+            <p><strong>ADMIN </strong>: {{ comment.commentResponseEntity.response }}</p>
+          </li>
+          <li *ngIf="!comment.commentResponseEntity && currentUser.role === 'ADMIN'">
+            <textarea [(ngModel)]="newResponseText" name="newResponseComment" class="textarea-card"
+            style="height: auto;"></textarea>
+            <button class="btn" (click)="responseIt(newResponseText,comment.id)" id="btnAddAdminNewComment">
+              Resonse It
+            </button>
+          </li>
+
+        </div>
+      </ul>
+    </div>
+  </div>
+
+
+
+ 
+</div>

@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="container p-3">
+  <h2 class="app-title" id="header">All Reviews</h2>
+  <div class="card" >
+    <div class="card-header">
+      Add New Review
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addComment()" id="addCommentForm">
+        <div class="card-text mb-1">
+          <textarea [(ngModel)]="newCommentText" name="newComment" class="textarea-card"
+            style="height: auto;"></textarea>
+          <!-- Yıldızlı puanlama bölümü -->
+          <div class="form-group mt-3">
+            <div class="star-rating ">
+              <button *ngFor="let star of stars; let i = index" (click)="rateProduct(i + 1)"
+                (mouseover)="onHover(i + 1)" (mouseleave)="onLeave()" class="star-btn"
+                [ngClass]="{ filled: i < currentHover || i < currentRating }">
+                <i class="fa-regular fa-star"></i>
+              </button>
+            </div>
+
+            <button class="btn" type="submit" id="btnAddNewComment">
+              SEND
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <p class="float-left" style="font-size: 30px;">Filter By Score</p>
+      <div class="star-rating d-flex float-right">
+        <!-- Mevcut filtreleme yıldızları -->
+        <div *ngFor="let rating of [5, 4, 3, 2, 1]" class="star mt-1 ml-3" (click)="filterByRating(rating)">
+          <button class="btn btn-secondary" type="button">
+            <i *ngFor="let _ of [].constructor(rating)" class="fa-solid fa-star"></i>
+            <i *ngFor="let _ of [].constructor(5 - rating)" class="fa-regular fa-star"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-items">
+      <ul class="list-group">
+        <div *ngFor="let comment of productReactions.comments">
+          <li class="list-group-item comment">
+            <p><strong>{{ comment.fromUser }}</strong>: {{ comment.comment }}</p>
+            
+            <!-- Yıldız sayısını göstermek için -->
+             <div class="star-rating" id="starInComment">
+              <button *ngFor="let star of [].constructor(comment.rating); let i = index" class="star-btn filled">
+                <i class="fa-solid fa-star"></i> <!-- Dolu yıldızlar -->
+              </button>
+              <button *ngFor="let star of [].constructor(5 - comment.rating); let i = index" class="star-btn">
+                <i class="fa-regular fa-star"></i> <!-- Boş yıldızlar -->
+              </button>
+             </div>
+            
+             <span class="likeInfo">
+              <button (click)="increaseLike(comment)" class="btn btn-success btn-sm">
+                <i class="fa-regular fa-thumbs-up"></i> Likes: {{ comment.likeCount }}
+              </button>
+              <!-- Beğenilmeme butonu -->
+              <button (click)="increaseUnlike(comment)" class="btn btn-danger btn-sm ml-2">
+                <i class="fa-regular fa-thumbs-down"></i> Dislikes: {{ comment.unLikeCount }}
+              </button>
+            </span>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>

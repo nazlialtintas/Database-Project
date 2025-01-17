@@ -1,0 +1,45 @@
+<h1 align="center" class="display-4 mb-5">Orders</h1>
+
+<table class="table table-striped text-center">
+    <thead>
+    <tr>
+        <th scope="col">Order #</th>
+        <th scope="col">Date</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Customer Email</th>
+        <th scope="col">CreditCard Name</th>
+        <th scope="col">CreditCard Number</th>
+        <th scope="col">PromoCode</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let order of page?.content">
+        <th class="align-middle" scope="row">
+            {{order.id}}
+        </th>
+        <td class="align-middle">{{order.createdDate | date}}</td>
+        <td class="align-middle">{{order.userEntity.name}}</td>
+        <td class="align-middle">{{order.userEntity.mail}}</td>
+        <td class="align-middle">{{order.creditCardsEntity.cardName}}</td>
+        <td class="align-middle">{{order.creditCardsEntity.cardNumber}}</td>
+        <td class="align-middle">{{order.promoCodeEntity ? order.promoCodeEntity.code : 'KULLANILMADI'}}</td>
+        <td class="align-middle">{{order.orderStatus}}</td>
+        <td class="align-middle">{{order.totalPrice}}</td>
+        <td class="align-middle">
+       
+            <a *ngIf="order.orderStatus === 'HAZIRLANIYOR'" style="display: block" (click)="cancel(order)" routerLink="./">Cancel</a>
+            <a *ngIf="currentUser.role === 'ADMIN' && order.orderStatus === 'HAZIRLANIYOR'"
+               style="display: block"
+               (click)="finish(order)"
+               routerLink="./">
+                Finish
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<app-pagination [currentPage]="page"></app-pagination>

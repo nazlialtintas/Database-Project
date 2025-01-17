@@ -1,0 +1,72 @@
+<h1 align="center" class="display-4 mb-5">Payment Details</h1>
+<div class="container">
+  <h4 class="mb-4">Order Summary</h4>
+  <ul class="list-group mb-4">
+    <li *ngFor="let item of shoppingCartItemEntities" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{item.productEntity.name}}</strong>
+        <span class="text-muted">x {{item.count}}</span>
+      </div>
+      <span>{{item.productEntity.discountPrice * item.count | currency}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+      <strong>Total:</strong> 
+      <strong>{{total | currency}}</strong>
+    </li>
+  </ul>
+
+  <!-- Promosyon Kodu Alanı -->
+  <div class="form-group mb-4">
+    <label for="promoCode">Promo Code</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="promoCode" [(ngModel)]="promoCode" placeholder="Enter promo code">
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="applyPromoCode()">Apply</button>
+      </div>
+    </div>
+    <small *ngIf="promoMessage" class="text-success">{{ promoMessage }}</small>
+    <small *ngIf="promoError" class="text-danger">{{ promoError }}</small>
+  </div>
+
+
+
+
+
+  <h4 class="mb-4">Payment Information</h4>
+
+  <!-- Kart Seçimi -->
+  <div class="form-group">
+    <label for="savedCards">Select a Saved Card</label>
+    <select class="form-control" id="savedCards" [(ngModel)]="selectedCard" (change)="onCardChange()">
+      <option *ngFor="let card of savedCards" [ngValue]="card">
+        {{ card.cardName }} - **** **** **** {{ card.cardNumber.slice(-4) }}
+      </option>
+      <option [ngValue]="'new'">Use a New Card</option>
+    </select>
+  </div>
+
+  <!-- Yeni Kart Girişi -->
+  <div *ngIf="selectedCard === 'new'">
+    <h5>Enter New Card Details</h5>
+    <form #paymentForm="ngForm">
+      <div class="form-group">
+        <label for="cardName">Cardholder's Name</label>
+        <input type="text" class="form-control" id="cardName" name="cardName" required [(ngModel)]="newCard.cardName">
+      </div>
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" class="form-control" id="cardNumber" name="cardNumber" required [(ngModel)]="newCard.cardNumber">
+      </div>
+      <div class="form-group">
+        <label for="expiryDate">Expiry Date</label>
+        <input type="month" class="form-control" id="expiryDate" name="expiryDate" required [(ngModel)]="newCard.expiryDate">
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" class="form-control" id="cvv" name="cvv" required [(ngModel)]="newCard.cvv">
+      </div>
+    </form>
+  </div>
+
+  <button class="btn btn-success btn-lg btn-block" (click)="submitPayment()">Confirm Payment</button>
+</div>

@@ -1,0 +1,70 @@
+/* Yıldız oylama alanı için CSS */
+.star {
+  display: flex;
+  gap: 10px;
+  
+}
+
+.star button {
+  padding: 10px;
+  /* Butonların içindeki boşluk */
+}
+
+/* Yıldız oylama alanı ve SEND butonunu aynı hizaya getirme ve aralarına boşluk ekleme */
+.form-group {
+  display: flex;
+  align-items: center; /* Yıldız oylama ve butonu yatayda hizalar */
+  justify-content: space-between; /* Aralarındaki boşluğu sağlar */
+}
+
+
+.star-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#starInComment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.star-btn {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: gray;
+}
+
+.star-btn.filled {
+  color: gold;
+}
+
+.star-btn:hover {
+  color: orange;
+}
+
+/* Yorum ekleme alanı için CSS */
+.textarea-card {
+  width: 100%; /* Card genişliğine uyum sağlar */
+  height: 150px; /* Yükseklik ihtiyaca göre ayarlanabilir */
+  resize: none; /* Kullanıcının boyut değiştirmesini engeller */
+  border-style: none;
+}
+
+#btnAddNewComment {
+  width: 100px;
+}
+
+/* Yorumlar listesi ve beğeni butonları için CSS */
+.comment {
+  display: flex;
+  justify-content: space-between; /* Yorum ve beğeni bilgisini iki uca dağıtır */
+}
+
+.likeInfo button {
+  cursor: pointer; /* Butonlara tıklanabilirlik ekler */
+  margin-right: 10px; /* Butonlar arasındaki boşluk */
+}
