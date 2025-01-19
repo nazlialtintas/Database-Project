@@ -1,4 +1,4 @@
-![mn1](https://github.com/user-attachments/assets/a6e3ff7e-504e-4e02-a062-a01e904c1700)In this project, a detailed analysis was conducted to understand user needs and project requirements.
+In this project, a detailed analysis was conducted to understand user needs and project requirements.
 Based on this analysis, a simple system architecture was designed, and an interface layout that users could easily understand was created. 
 The categories and subcategories necessary for the system's operation were structured in the most optimal way. 
 Additionally, the main data tables were designed, and the relationships between these tables were thoroughly analyzed.
@@ -12,18 +12,19 @@ In the final stage, all these components were integrated, and the designed E-R d
 using PostgreSQL for the database, Angular for the frontend, and Spring Boot for the backend.
 By the end of this process, the project was successfully completed, meeting all defined requirements.
 
-![Uploading mn1.jpeg![mn12](https://github.com/user-attachments/assets/da5177cd-1c36-4d40-97bb-4d6c46db2e3d)
-![mn11](https://github.com/user-attachments/assets/7a5e28dc-7428-4e1b-806b-5c0b7a700b80)
-![mn10](https://github.com/user-attachments/assets/6561e44b-a1a8-4173-a307-f536a3febc84)
-![mn14](https://github.com/user-attachments/assets/1b5bd268-c811-429f-84da-94e5b0b08838)
-![mn13](https://github.com/user-attachments/assets/4788f207-3693-43df-9719-32fd7abd8321)
-![mn9](https://github.com/user-attachments/assets/5c47d453-c8e7-44d9-9d73-c6297a702101)
-![mn8](https://github.com/user-attachments/assets/d0569b03-c4e8-4c35-942c-504f3a0b35eb)
-![mn7](https://github.com/user-attachments/assets/270a2638-b0f7-47f1-af8b-5b68b89d10c5)
-![mn6](https://github.com/user-attachments/assets/36c92687-cc59-4b23-b97c-77f2f92bc124)
-![mn5](https://github.com/user-attachments/assets/7f53cf97-5497-4984-87a6-5877662fd5ba)
-![mn4](https://github.com/user-attachments/assets/09a87938-66bc-4d83-adf2-cdc0473f4438)
-![mn3](https://github.com/user-attachments/assets/9960f826-3792-4dd1-aa2e-850ae831ca71)
-![mn2](https://github.com/user-attachments/assets/cbb2df85-d954-47eb-918d-2ef534b8a10f)
-…]()
-![mn](https://github.com/user-attachments/assets/1e0bed33-9693-41a1-b36a-09df87ffb15a)
+![mn12](https://github.com/user-attachments/assets/e7f402f3-20df-444e-a354-9d5838290cd4)
+![mn11](https://github.com/user-attachments/assets/8e11d6d4-71a7-4a30-a9e5-9002adaeba1f)
+![mn10](https://github.com/user-attachments/assets/7ebfb50f-dbc6-4b6e-ae33-7922c6db1c0a)
+![mn14](https://github.com/user-attachments/assets/cefa065d-35da-4af7-a703-dc51538f1265)
+![mn13](https://github.com/user-attachments/assets/2689f814-76dd-4c1d-b24d-4bab7ec8706d)
+![mn9](https://github.com/user-attachments/assets/673fdd7f-bbc5-401f-8fae-5afb0e73bdcc)
+![mn8](https://github.com/user-attachments/assets/b55237c3-6ffc-4962-a546-f264db05e974)
+![mn7](https://github.com/user-attachments/assets/9e202d1c-4c84-428f-9ab8-0c59f7bff080)
+![mn6](https://github.com/user-attachments/assets/554b1dd5-e110-4e84-9951-c7fcc868fa0b)
+![mn5](https://github.com/user-attachments/assets/7293e891-0102-4683-b185-4d86683c3896)
+![mn4](https://github.com/user-attachments/assets/3e52aafa-4a40-4d42-89c6-a350126c0fb5)
+![mn3](https://github.com/user-attachments/assets/3f66536d-9955-4bd5-ba74-ec1419683e5d)
+![mn2](https://github.com/user-attachments/assets/b5cc4353-8ee5-443d-8c91-20a53bbd2f21)
+![mn1](https://github.com/user-attachments/assets/556ef56e-a3ba-4ffa-a9f5-c8e4bc8aa4e2)
+![mn](https://github.com/user-attachments/assets/57e35797-da7b-4455-bbc4-392364be152b)
+
